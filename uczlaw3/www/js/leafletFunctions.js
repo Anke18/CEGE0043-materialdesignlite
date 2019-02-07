@@ -1,5 +1,6 @@
 // create a variable that will hold the XMLHttpRequest()
 var client;
+var earthquakes;
 
 function addPointLinePoly() {
 	// add a point
@@ -29,6 +30,7 @@ function earthquakeResponse() {
 function loadEarthquakelayer(earthquakedata) {
 	// convert the text to JSON
 	var earthquakejson = JSON.parse(earthquakedata);
+	earthquakes = earthquakejson;
 	// add the JSON layer onto the map
 	earthquakelayer = L.geoJson(earthquakejson).addTo(mymap);
 	// change the map zoom so that all the data is shown

@@ -1,3 +1,5 @@
+var userMarker;
+
 function trackLocation() {
 	if(navigator.geolocation){
 		navigator.geolocation.watchPosition(showPosition);
@@ -8,6 +10,9 @@ function trackLocation() {
 }
 
 function showPosition(position){
-    L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("You are here!").openPopup();
+	if (userMarker){
+		mymap.removeLayer(userMarker);
+	}
+    userMarker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("You are here!").openPopup();
     mymap.locate({setView: true, maxZoom: 16});
 }

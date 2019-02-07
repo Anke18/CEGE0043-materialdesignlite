@@ -15,10 +15,11 @@ function showPosition(position){
 	}
     userMarker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap).bindPopup("You are here!").openPopup();
     mymap.locate({setView: true, maxZoom: 16});
+	getDistance();
 }
 
 function getDistance() {
-	alert('getting distance');
+	//alert('getting distance');
 	navigator.geolocation.getCurrentPosition(getDistanceFromPoint);
 }
 
@@ -26,7 +27,8 @@ function getDistanceFromPoint(position) {
 	var lat = 51.524479;
 	var lng = -0.133894;
 	var distance = calculateDistance(position.coords.latitude, position.coords.longitude, lat,lng, 'K');
-	document.getElementById('showDistance').innerHTML = "Distance: " + distance;
+	//document.getElementById('showDistance').innerHTML = "Distance: " + distance;
+	if (distance < 0.1) {alert('You are close to UCL!');}
 }
 
 // code adapted from https://www.htmlgoodies.com/beyond/javascript/calculate-the-distance-between-two-points-inyour-web-apps.html
